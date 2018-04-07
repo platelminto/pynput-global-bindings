@@ -1,0 +1,4 @@
+print1=ctrl_l+f6,ctrl_l+shift+f6
+print2=ctrl_l+f6
+method_with_no_binding= # this is ignored (and so is this comment)
+othermethod=ctrl_l+f1

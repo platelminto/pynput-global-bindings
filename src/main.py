@@ -8,11 +8,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 bindings_file = 'bindings.txt'
 
-method_keys_delimiter = '='
-key_to_key_delimiter = '+'
-multiple_keycodes_delimiter = ','
-ignore_after_char = '#'
-
 currently_pressed_keys = list()
 looking_for = {}
 
@@ -56,21 +51,21 @@ with open(bindings_file) as file:
 
     for line in file:
 
-        method_and_keycodes = line.split(method_keys_delimiter)
+        method_and_keycodes = line.split('=')
 
         method = method_and_keycodes[0]
         rest_of_line = method_and_keycodes[1]
 
-        if ignore_after_char in rest_of_line:
+        if '#' in rest_of_line:
 
             rest_of_line = rest_of_line[:rest_of_line.index(ignore_after_char)]
 
         bindings = rest_of_line.rstrip()
 
         if bindings is not '':
-            for binding in bindings.split(multiple_keycodes_delimiter):
+            for binding in bindings.split(','):
                 keys = list()
-                for single_key in binding.split(key_to_key_delimiter):
+                for single_key in binding.split('+'):
                     keys.append(get_key_from_string(single_key.strip()))
 
                 keys_tuple = tuple(keys)
